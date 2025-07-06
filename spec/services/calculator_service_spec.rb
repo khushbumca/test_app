@@ -38,5 +38,9 @@ RSpec.describe CalculatorService do
       expect(CalculatorService.call("//;\n10;2")).to eq(12)
     end
 
+    it "negative number will throw an exception" do
+      expect {CalculatorService.call("10,-1, 7")}.to raise_error("negative numbers not allowed -1")
+    end
+
   end
 end
