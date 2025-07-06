@@ -34,5 +34,9 @@ RSpec.describe CalculatorService do
       expect(CalculatorService.call("10\n2,3")).to eq(15)
     end
 
+    it "different delimiter for //[delimiter]\n[numbers…]" do
+      expect(CalculatorService.call("//;\n10;2")).to eq(12)
+    end
+
   end
 end
