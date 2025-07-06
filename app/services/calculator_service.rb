@@ -11,16 +11,18 @@ class CalculatorService
         # start string with 3 position(extract // and delimiter) , then remove \n , then split it by delimiter , then convert to integer
         new_string = str[3..].gsub(/\n/, '').split("#{delimiter}").map(&:to_i)
     else 
-        # separated by , and convert to integer number  and then use inject method to array for adding numbers
+        # separated by , and convert to integer number  
         new_string = new_string.gsub(/\n/, ',').split(",").map(&:to_i)
     end
-    pos, neg = new_string.partition{|x| x.positive?}
-    p neg
-    neg = neg.select{|x| x != 0}
-    p neg
-    unless neg.empty?
-      raise "negative numbers not allowed #{neg.join(',')}" 
+    # filter out positive and negative numbers in array
+    positive, negative = new_string.partition{|x| x.positive?}
+    # reject if negative numbers contain 0
+    negative.reject!{|x| x == 0}
+    #check if negative array is empty
+    unless negative.empty?
+      raise "negative numbers not allowed #{negative.join(',')}" 
     else 
+      # use inject method to array for adding numbers and return
       return new_string.inject(&:+)
     end
     
