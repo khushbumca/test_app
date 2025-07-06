@@ -14,6 +14,21 @@ RSpec.describe CalculatorService do
       expect(CalculatorService.call("10,2")).to_not eq(1)
     end
     
+    it "returns itself for adding single number string" do
+      expect(CalculatorService.call("10")).to eq(10)
+    end
+
+    it "returns 0 for adding single string value" do
+      expect(CalculatorService.call("a")).to eq(0)
+    end
+
+    it "returns 0 for adding comma separated string values" do
+      expect(CalculatorService.call("a,b")).to eq(0)
+    end
+
+    it "returns sum of integer numbers for adding comma separated string with string and integer values" do
+      expect(CalculatorService.call("1,a,b,3")).to eq(4)
+    end
 
   end
 end
