@@ -30,5 +30,9 @@ RSpec.describe CalculatorService do
       expect(CalculatorService.call("1,a,b,3")).to eq(4)
     end
 
+    it "return sum of numbers for handling new lines between numbers instead of commas" do
+      expect(CalculatorService.call("10\n2,3")).to eq(15)
+    end
+
   end
 end
