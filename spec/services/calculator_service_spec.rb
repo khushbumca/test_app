@@ -42,5 +42,13 @@ RSpec.describe CalculatorService do
       expect {CalculatorService.call("10,-1, 7")}.to raise_error("negative numbers not allowed -1")
     end
 
+    it "multiple negative numbers will throw an exception with comma separted negative numbers" do
+      expect {CalculatorService.call("10,-1, 7, -3, -5")}.to raise_error("negative numbers not allowed -1,-3,-5")
+    end
+
+    it "different delimiter for //[delimiter]\n[numbers…] with string values also" do
+      expect(CalculatorService.call("//;\n10;2;hh;3;jj")).to eq(15)
+    end
+
   end
 end
